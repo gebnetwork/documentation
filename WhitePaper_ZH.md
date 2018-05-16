@@ -146,189 +146,187 @@
 &emsp;&emsp;交易所可以选择是否将交易订单放入共享流动性池中。如果交易订单被放入共享流动性池中并在其他交易所成交，那么手续费的70%将被分配给创建订单的交易所，30%被分配给成交订单的交易所。<br />
 
 #### 3.2.1. OTC交易订单
-<table>
-   <tr>
-      <td>Name</td>
-      <td>Data Type</td>
-      <td>Description</td>
-   </tr>
-   <tr>
-      <td>version</td>
-      <td>address</td>
-      <td>Address of the Exchange smart contract. This address will change each time the protocol is updated.</td>
-   </tr>
-   <tr>
-      <td>maker</td>
-      <td>address</td>
-      <td>Address originating the order.</td>
-   </tr>
-   <tr>
-      <td>tokenA</td>
-      <td>address</td>
-      <td>Address of an ERC20 Token contract.</td>
-   </tr>
-   <tr>
-      <td>valueA</td>
-      <td>uint256</td>
-      <td>Total units of tokenA offered by maker.</td>
-   </tr>
-   <tr>
-      <td>fiatB</td>
-      <td>bytes3</td>
-      <td>Type of fiat (eg. usd, cny)</td>
-   </tr>
-   <tr>
-      <td>price</td>
-      <td>uint64</td>
-      <td>Price of tokenA in fiatB, in cents as unit</td>
-   </tr>
-   <tr>
-      <td>realname</td>
-      <td>string</td>
-      <td>Realname of maker</td>
-   </tr>
-   <tr>
-      <td>paychannel</td>
-      <td>bytes</td>
-      <td>Fiat pay channel (eg. paypal, alipay)</td>
-   </tr>
-   <tr>
-      <td>paydetail</td>
-      <td>string</td>
-      <td>Details of payment</td>
-   </tr>
-   <tr>
-      <td>account</td>
-      <td>bytes</td>
-      <td>Fiat account of maker</td>
-   </tr>
-   <tr>
-      <td>expiration</td>
-      <td>uint256</td>
-      <td>Time at which the order expires (seconds since unix epoch).</td>
-   </tr>
-   <tr>
-      <td>feeRecipientA</td>
-      <td>address</td>
-      <td>Address of RelayerA. Receives transaction fees.</td>
-   </tr>
-   <tr>
-      <td>feeRecipientB</td>
-      <td>address</td>
-      <td>Address of RelayerB. Receives transaction fees.</td>
-   </tr>
-   <tr>
-      <td>v</td>
-      <td>uint8</td>
-      <td rowspan="3">ECDSA signature of the above arguments.</td>
-   </tr>
-   <tr>
-      <td>r</td>
-      <td>bytes32</td>
-      <td></td>
-   </tr>
-   <tr>
-      <td>s</td>
-      <td>bytes32</td>
-      <td></td>
-   </tr>
-</table>
+
+<div class="tg-wrap"><table>
+  <tr>
+    <th>Name</th>
+    <th>Data Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>version</td>
+    <td>address</td>
+    <td>Address of the Exchange smart contract. This address will change each time the protocol is updated.</td>
+  </tr>
+  <tr>
+    <td>maker</td>
+    <td>address</td>
+    <td>Address originating the order.</td>
+  </tr>
+  <tr>
+    <td>tokenA</td>
+    <td>address</td>
+    <td>Address of an ERC20 Token contract.</td>
+  </tr>
+  <tr>
+    <td>valueA</td>
+    <td>uint256</td>
+    <td>Total units of tokenA offered by maker.</td>
+  </tr>
+  <tr>
+    <td>fiatB</td>
+    <td>bytes3</td>
+    <td>Type of fiat (eg. usd, cny).</td>
+  </tr>
+  <tr>
+    <td>price</td>
+    <td>uint64</td>
+    <td>Price of tokenA in fiatB, in cents as unit.</td>
+  </tr>
+  <tr>
+    <td>realname</td>
+    <td>string</td>
+    <td>Realname of maker.</td>
+  </tr>
+  <tr>
+    <td>paychannel</td>
+    <td>bytes</td>
+    <td>Fiat pay channel (eg. paypal, alipay).</td>
+  </tr>
+  <tr>
+    <td>paydetail</td>
+    <td>string</td>
+    <td>Details of payment.</td>
+  </tr>
+  <tr>
+    <td>account</td>
+    <td>bytes</td>
+    <td>Fiat account of maker.</td>
+  </tr>
+  <tr>
+    <td>expiration</td>
+    <td>uint256</td>
+    <td>Time at which the order expires (seconds since unix epoch).</td>
+  </tr>
+  <tr>
+    <td>feeRecipientA</td>
+    <td>address</td>
+    <td>Address of RelayerA. Receives transaction fees.</td>
+  </tr>
+  <tr>
+    <td>feeRecipientB</td>
+    <td>address</td>
+    <td>Address of RelayerB. Receives transaction fees.</td>
+  </tr>
+  <tr>
+    <td>v</td>
+    <td>uint8</td>
+    <td rowspan="3">ECDSA signature of the above arguments.</td>
+  </tr>
+  <tr>
+    <td>r</td>
+    <td>bytes32</td>
+  </tr>
+  <tr>
+    <td>s</td>
+    <td>bytes32</td>
+  </tr>
+</table></div>
 
 feeRecipientA代表默认交易所的收费地址，feeRecipientB代表将订单从共享流动性池中取出的交易所的收费地址。
 
 #### 3.2.2. 抵押贷款交易订单
-<table>
-   <tr>
-      <td>Name</td>
-      <td>Data Type</td>
-      <td>Description</td>
-   </tr>
-   <tr>
-      <td>version</td>
-      <td>address</td>
-      <td>Address of the Exchange smart contract. This address will change each time the protocol is updated.</td>
-   </tr>
-   <tr>
-      <td>maker</td>
-      <td>address</td>
-      <td>Address originating the order.</td>
-   </tr>
-   <tr>
-      <td>tokenA</td>
-      <td>address</td>
-      <td>Collateral, address of an ERC20 Token contract.</td>
-   </tr>
-   <tr>
-      <td>fiatB</td>
-      <td>bytes3</td>
-      <td>Type of fiat (eg. usd, cny)</td>
-   </tr>
-   <tr>
-      <td>valueB</td>
-      <td>uint64</td>
-      <td>Total units of fiatB to borrow, in cents as unit</td>
-   </tr>
-   <tr>
-      <td>period</td>
-      <td>uint8</td>
-      <td>Loan period, in months as unit, between 1 and 24</td>
-   </tr>
-   <tr>
-      <td>interest</td>
-      <td>uint16</td>
-      <td>Annualized interest rate, between 1(0.1%) and 1000(100%)</td>
-   </tr>
-   <tr>
-      <td>realname</td>
-      <td>string</td>
-      <td>Realname of maker</td>
-   </tr>
-   <tr>
-      <td>paychannel</td>
-      <td>bytes</td>
-      <td>Fiat pay channel (eg. paypal, alipay)</td>
-   </tr>
-   <tr>
-      <td>paydetail</td>
-      <td>string</td>
-      <td>Details of payment</td>
-   </tr>
-   <tr>
-      <td>account</td>
-      <td>bytes</td>
-      <td>Fiat account of maker</td>
-   </tr>
-   <tr>
-      <td>expiration</td>
-      <td>uint256</td>
-      <td>Time at which the order expires (seconds since unix epoch).</td>
-   </tr>
-   <tr>
-      <td>feeRecipientA</td>
-      <td>address</td>
-      <td>Address of a RelayerA. Receives transaction fees.</td>
-   </tr>
-   <tr>
-      <td>feeRecipientB</td>
-      <td>address</td>
-      <td>Address of a RelayerB. Receives transaction fees.</td>
-   </tr>
-   <tr>
-      <td>v</td>
-      <td>uint8</td>
-      <td rowspan="3">ECDSA signature of the above arguments.</td>
-   </tr>
-   <tr>
-      <td>r</td>
-      <td>bytes32</td>
-      <td></td>
-   </tr>
-   <tr>
-      <td>s</td>
-      <td>bytes32</td>
-      <td></td>
-   </tr>
-</table>
+
+<div class="tg-wrap"><table>
+  <tr>
+    <th>Name</th>
+    <th>Data Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>version</td>
+    <td>address</td>
+    <td>Address of the Exchange smart contract. This address will change each time the protocol is updated.</td>
+  </tr>
+  <tr>
+    <td>maker</td>
+    <td>address</td>
+    <td>Address originating the order.</td>
+  </tr>
+  <tr>
+    <td>tokenA</td>
+    <td>address</td>
+    <td>Collateral, address of an ERC20 Token contract.</td>
+  </tr>
+  <tr>
+    <td>fiatB</td>
+    <td>bytes3</td>
+    <td>Type of fiat (eg. usd, cny).</td>
+  </tr>
+  <tr>
+    <td>valueB</td>
+    <td>uint64</td>
+    <td>Total units of fiatB to borrow, in cents as unit.</td>
+  </tr>
+  <tr>
+    <td>period</td>
+    <td>uint8</td>
+    <td>Loan period, in months as unit, between 1 and 24.</td>
+  </tr>
+  <tr>
+    <td>interest</td>
+    <td>uint16</td>
+    <td>Annualized interest rate, between 1(0.1%) and 1000(100%).</td>
+  </tr>
+  <tr>
+    <td>realname</td>
+    <td>string</td>
+    <td>Realname of maker.</td>
+  </tr>
+  <tr>
+    <td>paychannel</td>
+    <td>bytes</td>
+    <td>Fiat pay channel (eg. paypal, alipay).</td>
+  </tr>
+  <tr>
+    <td>paydetail</td>
+    <td>string</td>
+    <td>Details of payment.</td>
+  </tr>
+  <tr>
+    <td>account</td>
+    <td>bytes</td>
+    <td>Fiat account of maker.</td>
+  </tr>
+  <tr>
+    <td>expiration</td>
+    <td>uint256</td>
+    <td>Time at which the order expires (seconds since unix epoch).</td>
+  </tr>
+  <tr>
+    <td>feeRecipientA</td>
+    <td>address</td>
+    <td>Address of a RelayerA. Receives transaction fees.</td>
+  </tr>
+  <tr>
+    <td>feeRecipientB</td>
+    <td>address</td>
+    <td>Address of a RelayerB. Receives transaction fees.</td>
+  </tr>
+  <tr>
+    <td>v</td>
+    <td>uint8</td>
+    <td rowspan="3">ECDSA signature of the above arguments.</td>
+  </tr>
+  <tr>
+    <td>r</td>
+    <td>bytes32</td>
+  </tr>
+  <tr>
+    <td>s</td>
+    <td>bytes32</td>
+  </tr>
+</table></div>
 
 ### 3.3. 价格、利率、清算与保护机制
 &emsp;&emsp;GEB交易所不能决定OTC交易价格，而只能向交易双方推荐一个当前市场的公允价格，具体成交价格由交易双方共同决定。为了促进流动性，GEB交易所内的OTC交易订单列表将按照价格由低到高的顺序排列。GEB交易所也不能决定抵押贷款利率，利率由借入方自行设定。如果出借方对于借入方给出的利率满意，那么双方将通过智能合约完成交易。为了控制抵押贷款风险，可抵押代币种类，抵押率，强制清算线均由GEB协议开发组统一设置。这些全局设置将保存在一个由GEB基金会部署的以太坊智能合约中，任何一个设置参数的修改均需要DAO投票通过。为了应对突发情况，GEB基金会可选出若干成员组成GEB DAO委员会，委员会中的多数成员确认即可执行某项修改操作。<br />
@@ -557,172 +555,172 @@ function verifyCombinatedParams() {
 #### 5.2.3 经济激励与保证金
 &emsp;&emsp;为了激励陪审员正确行使陪审权力，陪审员需要在GEB DAO抵押一定数量GEB Token作为保证金。每次仲裁结束后，仲裁系统会根据每名陪审员的裁决和**最终仲裁结果R**对三名陪审员（A、B、C）分别进行代币奖励或惩罚，具体规则如下（+X表示奖励X，-X表示罚款X，0表示无奖惩）：<br />
 
-<table>
-   <tr>
-      <td align="center" colspan="3">裁决</td>
-      <td align="center" colspan="3">奖惩</td>
-   </tr>
-   <tr>
-      <td>A</td>
-      <td>B</td>
-      <td>C</td>
-      <td>A</td>
-      <td>B</td>
-      <td>C</td>
-   </tr>
-   <tr>
-      <td>R</td>
-      <td>R</td>
-      <td>R</td>
-      <td>+X</td>
-      <td>+X</td>
-      <td>+X</td>
-   </tr>
-   <tr>
-      <td>R</td>
-      <td>R</td>
-      <td>¬R</td>
-      <td>+X</td>
-      <td>+X</td>
-      <td>-X</td>
-   </tr>
-   <tr>
-      <td>R</td>
-      <td>R</td>
-      <td>无法判定</td>
-      <td>+X</td>
-      <td>+X</td>
-      <td>0</td>
-   </tr>
-   <tr>
-      <td>R</td>
-      <td>R</td>
-      <td>超时</td>
-      <td>+X</td>
-      <td>+X</td>
-      <td>-2X</td>
-   </tr>
-   <tr>
-      <td>R</td>
-      <td>¬R</td>
-      <td>¬R</td>
-      <td>+X</td>
-      <td>0</td>
-      <td>0</td>
-   </tr>
-   <tr>
-      <td>R</td>
-      <td>¬R</td>
-      <td>无法判定</td>
-      <td>+X</td>
-      <td>-X</td>
-      <td>0</td>
-   </tr>
-   <tr>
-      <td>R</td>
-      <td>¬R</td>
-      <td>超时</td>
-      <td>+X</td>
-      <td>-X</td>
-      <td>-2X</td>
-   </tr>
-   <tr>
-      <td>R</td>
-      <td>无法判定</td>
-      <td>无法判定</td>
-      <td>+X</td>
-      <td>0</td>
-      <td>0</td>
-   </tr>
-   <tr>
-      <td>R</td>
-      <td>无法判定</td>
-      <td>超时</td>
-      <td>+X</td>
-      <td>0</td>
-      <td>-2X</td>
-   </tr>
-   <tr>
-      <td>R</td>
-      <td>超时</td>
-      <td>超时</td>
-      <td>+X</td>
-      <td>-2X</td>
-      <td>-2X</td>
-   </tr>
-   <tr>
-      <td>¬R</td>
-      <td>¬R</td>
-      <td>无法判定</td>
-      <td>0</td>
-      <td>0</td>
-      <td>+X</td>
-   </tr>
-   <tr>
-      <td>¬R</td>
-      <td>¬R</td>
-      <td>超时</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-2X</td>
-   </tr>
-   <tr>
-      <td>¬R</td>
-      <td>无法判定</td>
-      <td>无法判定</td>
-      <td>-X</td>
-      <td>+X/2</td>
-      <td>+X/2</td>
-   </tr>
-   <tr>
-      <td>¬R</td>
-      <td>无法判定</td>
-      <td>超时</td>
-      <td>-X</td>
-      <td>+X/2</td>
-      <td>-2X</td>
-   </tr>
-   <tr>
-      <td>¬R</td>
-      <td>超时</td>
-      <td>超时</td>
-      <td>0</td>
-      <td>-2X</td>
-      <td>-2X</td>
-   </tr>
-   <tr>
-      <td>无法判定</td>
-      <td>无法判定</td>
-      <td>无法判定</td>
-      <td>+X/2</td>
-      <td>+X/2</td>
-      <td>+X/2</td>
-   </tr>
-   <tr>
-      <td>无法判定</td>
-      <td>无法判定</td>
-      <td>超时</td>
-      <td>+X/2</td>
-      <td>+X/2</td>
-      <td>-2X</td>
-   </tr>
-   <tr>
-      <td>无法判定</td>
-      <td>超时</td>
-      <td>超时</td>
-      <td>0</td>
-      <td>-2X</td>
-      <td>-2X</td>
-   </tr>
-   <tr>
-      <td>超时</td>
-      <td>超时</td>
-      <td>超时</td>
-      <td>-2X</td>
-      <td>-2X</td>
-      <td>-2X</td>
-   </tr>
-</table>
+<div class="tg-wrap"><table align="center">
+  <tr>
+    <th colspan="3">裁决</th>
+    <th colspan="3">奖惩</th>
+  </tr>
+  <tr>
+    <td>A</td>
+    <td>B</td>
+    <td>C</td>
+    <td>A</td>
+    <td>B</td>
+    <td>C</td>
+  </tr>
+  <tr>
+    <td>R</td>
+    <td>R</td>
+    <td>R</td>
+    <td>+X</td>
+    <td>+X</td>
+    <td>+X</td>
+  </tr>
+  <tr>
+    <td>R</td>
+    <td>R</td>
+    <td>¬R</td>
+    <td>+X</td>
+    <td>+X</td>
+    <td>-X</td>
+  </tr>
+  <tr>
+    <td>R</td>
+    <td>R</td>
+    <td>无法判定</td>
+    <td>+X</td>
+    <td>+X</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>R</td>
+    <td>R</td>
+    <td>超时</td>
+    <td>+X</td>
+    <td>+X</td>
+    <td>-2X</td>
+  </tr>
+  <tr>
+    <td>R</td>
+    <td>¬R</td>
+    <td>¬R</td>
+    <td>+X</td>
+    <td>0</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>R</td>
+    <td>¬R</td>
+    <td>无法判定</td>
+    <td>+X</td>
+    <td>-X</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>R</td>
+    <td>¬R</td>
+    <td>超时</td>
+    <td>+X</td>
+    <td>-X</td>
+    <td>-2X</td>
+  </tr>
+  <tr>
+    <td>R</td>
+    <td>无法判定</td>
+    <td>无法判定</td>
+    <td>+X</td>
+    <td>0</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>R</td>
+    <td>无法判定</td>
+    <td>超时</td>
+    <td>+X</td>
+    <td>0</td>
+    <td>-2X</td>
+  </tr>
+  <tr>
+    <td>R</td>
+    <td>超时</td>
+    <td>超时</td>
+    <td>+X</td>
+    <td>-2X</td>
+    <td>-2X</td>
+  </tr>
+  <tr>
+    <td>¬R</td>
+    <td>¬R</td>
+    <td>无法判定</td>
+    <td>0</td>
+    <td>0</td>
+    <td>+X</td>
+  </tr>
+  <tr>
+    <td>¬R</td>
+    <td>¬R</td>
+    <td>超时</td>
+    <td>0</td>
+    <td>0</td>
+    <td>-2X</td>
+  </tr>
+  <tr>
+    <td>¬R</td>
+    <td>无法判定</td>
+    <td>无法判定</td>
+    <td>-X</td>
+    <td>+X/2</td>
+    <td>+X/2</td>
+  </tr>
+  <tr>
+    <td>¬R</td>
+    <td>无法判定</td>
+    <td>超时</td>
+    <td>-X</td>
+    <td>+X/2</td>
+    <td>-2X</td>
+  </tr>
+  <tr>
+    <td>¬R</td>
+    <td>超时</td>
+    <td>超时</td>
+    <td>0</td>
+    <td>-2X</td>
+    <td>-2X</td>
+  </tr>
+  <tr>
+    <td width="200">无法判定</td>
+    <td width="200">无法判定</td>
+    <td width="200">无法判定</td>
+    <td width="200">+X/2</td>
+    <td width="200">+X/2</td>
+    <td width="200">+X/2</td>
+  </tr>
+  <tr>
+    <td>无法判定</td>
+    <td>无法判定</td>
+    <td>超时</td>
+    <td>+X/2</td>
+    <td>+X/2</td>
+    <td>-2X</td>
+  </tr>
+  <tr>
+    <td>无法判定</td>
+    <td>超时</td>
+    <td>超时</td>
+    <td>0</td>
+    <td>-2X</td>
+    <td>-2X</td>
+  </tr>
+  <tr>
+    <td>超时</td>
+    <td>超时</td>
+    <td>超时</td>
+    <td>-2X</td>
+    <td>-2X</td>
+    <td>-2X</td>
+  </tr>
+</table></div>
 
 因A、B、C顺序无关，以上表格已经包含了三名陪审员所有可能的裁决结果组合。陪审员超时未裁决的情况事实上较少发生，因为这会导致该陪审员遭受双倍的代币罚款。<br />
 
@@ -772,7 +770,7 @@ address = 40*HEXDIG
       "@context": "https://w3id.org/identity/v1",
       
     }
-  }]
+  }],
   "signature": {
     "@type": "EcdsaKoblitzSignature2016",
     "created": "2016-10-23T05:50:16Z",
@@ -971,15 +969,71 @@ pubsub.emit('orderList', newOrders);
 
 ![img](https://images-cdn.shimo.im/U3ARYnPvCYcSTzKB/cryptocurrencies_infographic_1.jpg!thumbnail)
 
+<br /><br />
 ### 7.3. SWOT分析
 
 ![img](https://images-cdn.shimo.im/zxKPWSfs5LkpyqNl/1526375181412.jpg!thumbnail)
 
+<br /><br />
 ## 8. 路线图
 
 ![img](https://images-cdn.shimo.im/2jXwKkVGPS0mk45M/roadmap.jpg!thumbnail)
-TODO
 
+<div class="tg-wrap"><table>
+  <tr>
+    <td rowspan="3">2018.Q2</td>
+    <td>白皮书发布</td>
+  </tr>
+  <tr>
+    <td>GEB Network官网上线</td>
+  </tr>
+  <tr>
+    <td>启动全球社群运营，包括美国，中国，加拿大，澳大利亚，俄罗斯等国家</td>
+  </tr>
+  <tr>
+    <td rowspan="4">2018.Q3</td>
+    <td>开放交易商申请</td>
+  </tr>
+  <tr>
+    <td>DAICO启动，分为Phase Ⅰ和Phase Ⅱ两个阶段</td>
+  </tr>
+  <tr>
+    <td>GEB代币上线交易所</td>
+  </tr>
+  <tr>
+    <td>智能合约开发</td>
+  </tr>
+  <tr>
+    <td rowspan="2">2018.Q4</td>
+    <td>平台软件开发</td>
+  </tr>
+  <tr>
+    <td>发布GEB协议内测版</td>
+  </tr>
+  <tr>
+    <td rowspan="3">2019.Q1</td>
+    <td>上线至少10家GEB认证交易所</td>
+  </tr>
+  <tr>
+    <td>发布GEB协议公测版，及平台开源</td>
+  </tr>
+  <tr>
+    <td>官方交易所试运行，模拟交易</td>
+  </tr>
+  <tr>
+    <td rowspan="2">2019.Q1</td>
+    <td>GEB Network主网上线</td>
+  </tr>
+  <tr>
+    <td>GEB官方交易所正式运行</td>
+  </tr>
+  <tr>
+    <td>2019.Q2</td>
+    <td>设立GEB Network北美、欧洲办公室，扩展全球业务</td>
+  </tr>
+</table></div>
+
+<br /><br />
 ## 9. 团队介绍
 - CEO: 朱崴
 
@@ -1005,4 +1059,5 @@ TODO
 
 &emsp;&emsp;本科毕业于复旦大学计算机系，曾任职于微软中国，负责微软在线支付系统的技术架构工作。2013年开始关注比特币及相关技术，对区块链技术有深入研究，目前专注于企业级数字货币钱包和区块链底层研发。<br />
 
+<br /><br />
 ## 10. 参考文献
